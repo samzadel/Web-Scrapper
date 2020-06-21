@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import os
 import re
-import insert_data
+import Insert_data
 import csv
 
 
@@ -51,5 +51,5 @@ def fetch_metadata(start_url):
         except Exception as e:
             break
     # Import the cvs file to mongoDB
-    insert_data.import_data()
+    Insert_data.import_data()
 

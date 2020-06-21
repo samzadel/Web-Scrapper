@@ -1,6 +1,7 @@
 import pymongo
 from pymongo import MongoClient
 import csv
+import os
 
 
 def import_data():
@@ -19,6 +20,7 @@ def import_data():
                 mydict = {"Name_device": row[0], "Version": row[1], "Last_modified": row[2]}
                 mycoll.insert_one(mydict)
             elif mycoll.find_one({"Name_device": row[0]})['Last_modified'] != row[2]:
-                print(mycoll.find_one({"Name_device": row[0]}))
                 mycoll.replace_one({"Name_device": row[0]}, {"Name_device": row[0],"Version": row[1], "Last_modified": row[2]})
+    os.remove('./csv_file.csv')
+    print("Insertion of firmwares metadata completed")
 
